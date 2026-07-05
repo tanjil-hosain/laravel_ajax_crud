@@ -45,34 +45,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-12">
+                <div class="message"></div>
                 <div class="d-flex justify-content-between">
+                    
                     <h2>About Me</h2>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">New
                         student</button>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($students as $student)
-                            @csrf
-                            <tr>
-                                <td>{{ $student->id }}</td>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->address }}</td>
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-
+                @include('table');
 
             </div>
         </div>
@@ -107,8 +87,11 @@
                         data: MyData,
                         processData: false,
                         contentType: false,
-                        succeess: function(response) {
-                            $('#myModel').modal('hide');
+                        success: function(response) {
+                            $('#myModal').modal('hide');
+                          
+                         
+                            $('.message').html('<div class="alert alert-success">Inserted</div>')
                         },
                         error: function(err) {
                             let errors = err.responseJSON.errors;

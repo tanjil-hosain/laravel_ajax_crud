@@ -39,7 +39,11 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->address = $request->address;
         $student->save();
-        return redirect()->route('student.index');
+        // return redirect()->route('student.index')->with('success', 'Successfully Inserted');
+        return response()->json([
+            'status' =>'success',
+            'msg'=> 'Student Added Successfully'
+        ]);
     }
 
     /**
